@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd0b4f51-5d55-42c3-ba59-5a341d91d117">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     invoice.`medicine` AS invoice_medicine,
+     invoice.`price` AS invoice_price,
+     invoice.`quantity` AS invoice_quantity,
+     invoice.`total` AS invoice_total,
+     invoice.`batchno` AS invoice_batchno,
+     invoice.`customer_name` AS invoice_customer_name,
+     invoice.`contactno` AS invoice_contactno,
+     invoice.`city` AS invoice_city,
+     sales.`med_name` AS sales_med_name,
+     sales.`total` AS sales_total,
+     sales.`gst` AS sales_gst
+FROM
+     `invoice` invoice,
+     `sales` sales]]>
+	</queryString>
+	<field name="invoice_medicine" class="java.lang.String"/>
+	<field name="invoice_price" class="java.lang.Double"/>
+	<field name="invoice_quantity" class="java.lang.Integer"/>
+	<field name="invoice_total" class="java.lang.Double"/>
+	<field name="invoice_batchno" class="java.lang.Integer"/>
+	<field name="invoice_customer_name" class="java.lang.String"/>
+	<field name="invoice_contactno" class="java.lang.Integer"/>
+	<field name="invoice_city" class="java.lang.String"/>
+	<field name="sales_med_name" class="java.lang.String"/>
+	<field name="sales_total" class="java.lang.Double"/>
+	<field name="sales_gst" class="java.lang.Double"/>
+	<variable name="invoice_total_1" class="java.lang.Double" resetType="Group" resetGroup="sales" calculation="Sum">
+		<variableExpression><![CDATA[$F{invoice_total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="135" y="19" width="111" height="39" uuid="7028dfc8-e091-4cd4-9907-adf765c27193"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Pharmacy]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="135" height="14" uuid="6bfe1bcd-29c5-4551-8167-040bf1c8bcde"/>
+				<text><![CDATA[Medicine]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="0" width="51" height="14" uuid="bdb0a50e-d330-4507-a777-9fef131e42ad"/>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="0" width="58" height="14" uuid="28d334e7-2734-4cf7-8d9a-2ee6d077c8cb"/>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="323" y="1" width="58" height="14" uuid="485e7bd9-9d42-4b49-80bf-d77401f0b9b9"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="381" height="1" uuid="02f57359-73d8-4564-bffb-b07e2300c159"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="135" height="20" uuid="30db647e-5a81-42e8-a493-6d571637a68b"/>
+				<textFieldExpression><![CDATA[$F{invoice_medicine}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="0" width="51" height="20" uuid="179578e6-70b7-4b18-b296-a8e7a26d17b9"/>
+				<textFieldExpression><![CDATA[$F{invoice_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="0" width="58" height="20" uuid="61cca3c9-7da2-40e3-8178-6db613b7c27b"/>
+				<textFieldExpression><![CDATA[$F{invoice_quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="58" height="20" uuid="15d3afe5-92ee-4db9-a696-7a0d63c5656b"/>
+				<textFieldExpression><![CDATA[$F{invoice_total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="381" height="1" uuid="495ce39a-c428-4a98-b3f3-6074fc911e0d"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="285" y="28" width="100" height="20" uuid="2aa5cb78-969e-49e4-a380-69bac8e68f18"/>
+				<textFieldExpression><![CDATA[$V{invoice_total_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="625" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f06793c-bdbb-426a-a248-2830b88eacb1">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     invoice.`medicine` AS invoice_medicine,
+     invoice.`price` AS invoice_price,
+     invoice.`quantity` AS invoice_quantity,
+     invoice.`total` AS invoice_total,
+     invoice.`batchno` AS invoice_batchno,
+     invoice.`customer_name` AS invoice_customer_name,
+     invoice.`contactno` AS invoice_contactno,
+     invoice.`city` AS invoice_city,
+     invoice.`totalpayment` AS invoice_totalpayment
+FROM
+     `invoice` invoice]]>
+	</queryString>
+	<field name="invoice_medicine" class="java.lang.String"/>
+	<field name="invoice_price" class="java.lang.Double"/>
+	<field name="invoice_quantity" class="java.lang.Integer"/>
+	<field name="invoice_total" class="java.lang.Double"/>
+	<field name="invoice_batchno" class="java.lang.Integer"/>
+	<field name="invoice_customer_name" class="java.lang.String"/>
+	<field name="invoice_contactno" class="java.lang.Integer"/>
+	<field name="invoice_city" class="java.lang.String"/>
+	<field name="invoice_totalpayment" class="java.lang.Double"/>
+	<variable name="invoice_total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{invoice_total}]]></variableExpression>
+	</variable>
+	<group name="sales">
+		<groupFooter>
+			<band height="50">
+				<staticText>
+					<reportElement x="321" y="0" width="123" height="20" uuid="a1e50381-491c-4e98-b991-cfec7efd0374"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total payable amount]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="454" y="0" width="100" height="20" uuid="f2952566-ebe3-4f7e-a68c-46147e7abaa2"/>
+					<textFieldExpression><![CDATA[$V{invoice_total_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="219" y="30" width="123" height="20" uuid="7b0a6cde-7616-4b23-8865-07e291a14a11"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Thank you visit again]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="68" splitType="Stretch">
+			<staticText>
+				<reportElement x="198" y="10" width="175" height="57" uuid="66ac02a0-b9bc-4c68-af35-09208ca46e56"/>
+				<textElement>
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pharmacy]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6813902e-9bbc-41ad-921d-66d400288302"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="d5cc1b6b-7458-4bee-8d11-a2f6887dceda"/>
+				<textFieldExpression><![CDATA[$F{invoice_customer_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20" uuid="e4eb3cc7-13e8-4034-a0e9-84728978c027"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer number:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="20" uuid="5022fa46-68b5-4a0a-9094-86effc0af1bd"/>
+				<textFieldExpression><![CDATA[$F{invoice_contactno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="167" height="28" uuid="b7103275-0a03-4e7a-bfe9-8e615cda9364"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Medicine name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="0" width="43" height="28" uuid="2bc0c28c-5544-4a73-b41b-54d35e532f08"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="61" height="28" uuid="34e06322-d61e-48c0-867d-c262195a4164"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="1" width="61" height="28" uuid="3a83c54f-dbf7-40f6-bcbb-cb8cca53c5f6"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="7ae19b42-6405-46f0-8718-bcf432fadfa3"/>
+				<textFieldExpression><![CDATA[$F{invoice_medicine}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="0" width="100" height="20" uuid="52eb3909-b66c-4272-89de-20c5a87dbe8d"/>
+				<textFieldExpression><![CDATA[$F{invoice_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="0" width="100" height="20" uuid="a700fb40-e4cb-4983-b7d5-90a7c072a0e7"/>
+				<textFieldExpression><![CDATA[$F{invoice_quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="0" width="100" height="20" uuid="ad0020a6-506f-415e-a64b-9d1357b1506c"/>
+				<textFieldExpression><![CDATA[$F{invoice_total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="22" width="554" height="1" uuid="a8d9a407-d505-4283-9fde-6be583a1991d"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="28" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="257" y="0" width="298" height="20" uuid="7d3d8886-2772-43cf-bd1b-6a0dd8062d44"/>
+				<text><![CDATA[5 Panchnath Plot ,Dr Ambedkar road, Rajkot 360001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="20" width="298" height="20" uuid="ecd33382-8641-4625-8135-dc6436b79b5b"/>
+				<text><![CDATA[Timings : 9:00 am to 8:00pm Mon to Sat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="bd58ca2c-a1f4-4209-90d4-cadea7ed6413"/>
+				<text><![CDATA[My Pharmacy]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="182" height="20" uuid="34173a52-b349-4454-8422-cd580031c2b6"/>
+				<text><![CDATA[Contact No: 999999999 ,777777777]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
