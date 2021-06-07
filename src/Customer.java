@@ -15,8 +15,25 @@ public class Customer extends javax.swing.JFrame {
     /**
      * Creates new form Client
      */
+    int cid=0;
+    
     public Customer() {
         initComponents();
+        try
+        {
+            Connection con=ConnectionProvider.getCon();
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery("select cid from customer");
+            rs.last();
+            int id=rs.getInt("cid");
+            cid=id+1;
+            jTextField_cid.setText(String.valueOf(cid));
+            jTextField_cid.setEditable(false);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Not connected");
+        }
     }
 
     /**
@@ -40,7 +57,9 @@ public class Customer extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton_save = new javax.swing.JButton();
         jButton_viewCustomer = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField_cid = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(600, 250));
@@ -49,7 +68,7 @@ public class Customer extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Add Customer");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Customer Name");
@@ -107,7 +126,7 @@ public class Customer extends javax.swing.JFrame {
                 jButton_saveActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, -1, -1));
+        getContentPane().add(jButton_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, -1, -1));
 
         jButton_viewCustomer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_viewCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/eye.png"))); // NOI18N
@@ -117,10 +136,22 @@ public class Customer extends javax.swing.JFrame {
                 jButton_viewCustomerActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_viewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, -1, -1));
+        getContentPane().add(jButton_viewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/bkg850.jpg"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Customer ID");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 115, -1));
+
+        jTextField_cid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField_cid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_cidActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField_cid, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 250, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/bkg850.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -141,16 +172,16 @@ public class Customer extends javax.swing.JFrame {
 
     private void jButton_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_saveActionPerformed
         // TODO add your handling code here:
-        String cname= jTextField_cname.getText();
-        String strcno= jTextField_cno.getText();
-        String add= jTextField_cadd.getText();
-        String city= jTextField_city.getText();
-        int cno=Integer.parseInt(strcno);
         try
         {
+            String cname= jTextField_cname.getText();
+            String strcno= jTextField_cno.getText();
+            String add= jTextField_cadd.getText();
+            String city= jTextField_city.getText();
+            int cno=Integer.parseInt(strcno);
             Connection con=ConnectionProvider.getCon();
             Statement st=con.createStatement();
-            st.executeUpdate("insert into customer values('"+cname+"','"+cno+"','"+add+"','"+city+"')");
+            st.executeUpdate("insert into customer values('"+cname+"','"+cno+"','"+add+"','"+city+"','"+cid+")");
             JOptionPane.showMessageDialog(null,"Successfully Updated");
             setVisible(false);
             new Customer().setVisible(true);
@@ -166,6 +197,10 @@ public class Customer extends javax.swing.JFrame {
         setVisible(false);
         new viewCustomer().setVisible(true);
     }//GEN-LAST:event_jButton_viewCustomerActionPerformed
+
+    private void jTextField_cidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_cidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,8 +247,10 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField_cadd;
+    private javax.swing.JTextField jTextField_cid;
     private javax.swing.JTextField jTextField_city;
     private javax.swing.JTextField jTextField_cname;
     private javax.swing.JTextField jTextField_cno;

@@ -40,6 +40,7 @@ public int flag=0;
         jLabel2 = new javax.swing.JLabel();
         jLabel_notfound = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(600, 250));
@@ -58,10 +59,10 @@ public int flag=0;
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Name", "Number", "Address", "City"
+                "Name", "Number", "Address", "City", "CID"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -69,7 +70,7 @@ public int flag=0;
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 214, 826, 50));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Customer Name");
+        jLabel1.setText("Customer ID");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 146, -1, -1));
 
         jButton_search.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -101,6 +102,10 @@ public int flag=0;
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/bkg850.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Customer Name");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 146, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -117,12 +122,13 @@ public int flag=0;
 
     private void jButton_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_searchActionPerformed
         // TODO add your handling code here:
-        String name=jTextField_cname.getText();
+        String cid=jTextField_cname.getText();
+        int id=Integer.parseInt(cid);
         try
         {
             Connection con=ConnectionProvider.getCon();
             Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery("SELECT * FROM customer where name='"+name+"';");
+            ResultSet rs=st.executeQuery("SELECT * FROM customer where cid="+id);
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             if(!rs.first())
             {
@@ -131,7 +137,7 @@ public int flag=0;
             else
             {
                 jLabel_notfound.setVisible(false);
-                jTextField_cname.setEditable(false);
+                //jTextField_cname.setEditable(false);
                 flag=1;
                 
             }
@@ -184,6 +190,7 @@ public int flag=0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_notfound;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

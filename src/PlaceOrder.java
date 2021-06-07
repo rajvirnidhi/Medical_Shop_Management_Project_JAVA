@@ -19,7 +19,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class PlaceOrder extends javax.swing.JFrame {
 
     Connection con=ConnectionProvider.getCon();
-    public int final_qty,final_availqty,bno,contactno,flag=0,flag_meds=0,flag_cust=0,flag_save=0;
+    public int final_qty,final_availqty,bno,contactno,cust_id,flag=0,flag_meds=0,flag_cust=0,flag_save=0;
     public double prc,total,pay=0,gst;
     public String cust_name,cust_add,cust_city,med_name;
     
@@ -47,7 +47,6 @@ public class PlaceOrder extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField_cname = new javax.swing.JTextField();
         jTextField_cno = new javax.swing.JTextField();
         jTextField_cadd = new javax.swing.JTextField();
         jTextField_city = new javax.swing.JTextField();
@@ -62,64 +61,74 @@ public class PlaceOrder extends javax.swing.JFrame {
         jTextField_qty = new javax.swing.JTextField();
         jComboBox_mname = new javax.swing.JComboBox<>();
         jButton_add = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField_cid = new javax.swing.JTextField();
+        jTextField_cname = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(600, 250));
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Place order");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Customer Name");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Contact Number");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 138, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Address");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 179, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("City");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 220, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Medicine name");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Quantity");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Amount per box");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Total Amount");
-
-        jTextField_cname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField_cname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cnameActionPerformed(evt);
-            }
-        });
-        jTextField_cname.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField_cnameKeyPressed(evt);
-            }
-        });
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, -1, -1));
 
         jTextField_cno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextField_cno, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 135, 200, -1));
 
         jTextField_cadd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextField_cadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 176, 200, -1));
 
         jTextField_city.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextField_city, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 217, 200, -1));
 
         jTextField_prc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextField_prc, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 200, -1));
 
         jTextField_total.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextField_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, 200, -1));
 
         jTextField_availqty.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextField_availqty, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 200, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Availability");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
 
         jButton_save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/save.png"))); // NOI18N
@@ -129,6 +138,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 jButton_saveActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 258, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,6 +150,8 @@ public class PlaceOrder extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 353, 623, 135));
+
         jButton_printInvoice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_printInvoice.setText("Print Invoice");
         jButton_printInvoice.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +159,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 jButton_printInvoiceActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_printInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 397, -1, -1));
 
         jTextField_qty.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField_qty.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -154,6 +167,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 jTextField_qtyKeyPressed(evt);
             }
         });
+        getContentPane().add(jTextField_qty, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 200, -1));
 
         jComboBox_mname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_mname.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +180,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 jComboBox_mnameKeyPressed(evt);
             }
         });
+        getContentPane().add(jComboBox_mname, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 200, -1));
 
         jButton_add.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_add.setText("Add");
@@ -174,113 +189,63 @@ public class PlaceOrder extends javax.swing.JFrame {
                 jButton_addActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 310, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addComponent(jButton_printInvoice))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(300, 300, 300)
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(39, 39, 39)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField_city, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(jTextField_cadd, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField_cno, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField_cname, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(306, 306, 306)
-                                .addComponent(jButton_save)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField_availqty)
-                            .addComponent(jTextField_prc)
-                            .addComponent(jTextField_total)
-                            .addComponent(jTextField_qty)
-                            .addComponent(jComboBox_mname, 0, 200, Short.MAX_VALUE))))
-                .addGap(87, 87, 87))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton_add)
-                .addGap(381, 381, 381))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField_cname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_mname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField_cno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_availqty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField_cadd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField_qty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_prc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jButton_save))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jButton_add)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jButton_printInvoice)))
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/Close.png"))); // NOI18N
+        jButton1.setText("Close");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(745, 508, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("Customer ID");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+
+        jTextField_cid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField_cid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_cidActionPerformed(evt);
+            }
+        });
+        jTextField_cid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_cidKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jTextField_cid, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 60, 200, -1));
+
+        jTextField_cname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField_cname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_cnameActionPerformed(evt);
+            }
+        });
+        jTextField_cname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_cnameKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jTextField_cname, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 94, 200, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/bkg850.jpg"))); // NOI18N
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     private void jButton_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_saveActionPerformed
         // TODO add your handling code here:
         try
         {
+            String cid= jTextField_cid.getText();
+            cust_id=Integer.parseInt(cid);
             String cname= jTextField_cname.getText();
             cust_name=cname;
             String strcno= jTextField_cno.getText();
@@ -295,6 +260,7 @@ public class PlaceOrder extends javax.swing.JFrame {
             st1.executeUpdate("insert into customer values('"+cname+"','"+cno+"','"+add+"','"+city+"')");
             JOptionPane.showMessageDialog(null,"Successfully Updated");
             flag_cust=2;
+            jTextField_cid.setEditable(false);
             jTextField_cname.setEditable(false);
             jTextField_cno.setEditable(false);
             jTextField_cadd.setEditable(false);
@@ -306,52 +272,6 @@ public class PlaceOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton_saveActionPerformed
     
-    private void jTextField_cnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_cnameKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()== KeyEvent.VK_ENTER)
-        {
-            String name=jTextField_cname.getText();
-            cust_name=name;
-            try 
-            {
-                Connection con=ConnectionProvider.getCon();
-                Statement st=con.createStatement();
-                ResultSet rs=st.executeQuery("SELECT * FROM customer where name='"+name+"';");
-                
-                if(!rs.first())
-                {
-                    jButton_save.setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Customer not found! Add details");
-                    flag_save=1;
-                }
-                else
-                {
-                    int cno=rs.getInt("contact_number");
-                    jTextField_cno.setText(String.valueOf(cno));
-                    contactno=cno;
-                    
-                    String add =rs.getString("address");
-                    jTextField_cadd.setText(add);
-                    cust_add=add;
-                    
-                    String city =rs.getString("city");
-                    jTextField_city.setText(city);
-                    cust_city=city;
-                    
-                    jTextField_cname.setEditable(false);
-                    jTextField_cno.setEditable(false);
-                    jTextField_cadd.setEditable(false);
-                    jTextField_city.setEditable(false);
-                    
-                    flag_cust=1;
-                }
-            } 
-            catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Not connected c_name!");
-            }
-        }
-    }//GEN-LAST:event_jTextField_cnameKeyPressed
-
     private void fillcombo()
     {
         try
@@ -530,10 +450,6 @@ public class PlaceOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton_addActionPerformed
 
-    private void jTextField_cnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cnameActionPerformed
-
     private void jButton_printInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_printInvoiceActionPerformed
         try {
             // TODO add your handling code here:
@@ -555,12 +471,83 @@ public class PlaceOrder extends javax.swing.JFrame {
             st.executeUpdate("delete from invoice");
             Statement st1=con.createStatement();
             st1.executeUpdate("delete from sales");
+            
+            new PlaceOrder().setVisible(true);
         } 
         catch (Exception e) 
         {
             JOptionPane.showMessageDialog(null, "Not connected!");
         }
     }//GEN-LAST:event_jButton_printInvoiceActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //close the form
+        setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField_cidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_cidActionPerformed
+
+    private void jTextField_cidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_cidKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER)
+        {
+            String cid=jTextField_cid.getText();
+            cust_id=Integer.parseInt(cid);
+            try 
+            {
+                Connection con=ConnectionProvider.getCon();
+                Statement st=con.createStatement();
+                ResultSet rs=st.executeQuery("SELECT * FROM customer where cid="+cust_id);
+                
+                if(!rs.first())
+                {
+                    jButton_save.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Customer not found! Add details");
+                    flag_save=1;
+                }
+                else
+                {
+                    String name =rs.getString("name");
+                    jTextField_cname.setText(name);
+                    cust_name=name;
+                    
+                    int cno=rs.getInt("contact_number");
+                    jTextField_cno.setText(String.valueOf(cno));
+                    contactno=cno;
+                    
+                    String add =rs.getString("address");
+                    jTextField_cadd.setText(add);
+                    cust_add=add;
+                    
+                    String city =rs.getString("city");
+                    jTextField_city.setText(city);
+                    cust_city=city;
+                    
+                    jTextField_cid.setEditable(false);
+                    jTextField_cname.setEditable(false);
+                    jTextField_cno.setEditable(false);
+                    jTextField_cadd.setEditable(false);
+                    jTextField_city.setEditable(false);
+                    
+                    flag_cust=1;
+                }
+            } 
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Not connected c_name!");
+            }
+        }
+    }//GEN-LAST:event_jTextField_cidKeyPressed
+
+    private void jTextField_cnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_cnameActionPerformed
+
+    private void jTextField_cnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_cnameKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_cnameKeyPressed
 
     /**
      * @param args the command line arguments
@@ -599,12 +586,15 @@ public class PlaceOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_add;
     private javax.swing.JButton jButton_printInvoice;
     private javax.swing.JButton jButton_save;
     private javax.swing.JComboBox<String> jComboBox_mname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -617,6 +607,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField_availqty;
     private javax.swing.JTextField jTextField_cadd;
+    private javax.swing.JTextField jTextField_cid;
     private javax.swing.JTextField jTextField_city;
     private javax.swing.JTextField jTextField_cname;
     private javax.swing.JTextField jTextField_cno;
