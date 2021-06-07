@@ -386,6 +386,8 @@ public class PlaceOrder extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null, "Exceeded maximum limit!\nAvailable: "+final_availqty);
                 jTextField_qty.setText("");
+                jTextField_total.setText("");
+                
                 //final_qty=final_availqty;
             }
             
@@ -393,24 +395,29 @@ public class PlaceOrder extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null, "Item Unavailable");
                 jTextField_qty.setText("");
+                jTextField_total.setText("");
                 //final_qty=final_availqty;
             }
             
             try
             {
-                final_availqty-=final_qty;
-                Statement st1=con.createStatement();
-                st1.executeUpdate("UPDATE stock SET quantity = "+final_availqty+"WHERE product_name = '"+med_name+"'");
+                if(final_availqty > 0 && final_availqty >= final_qty)
+                {
+                    final_availqty-=final_qty;
+                    Statement st1=con.createStatement();
+                    st1.executeUpdate("UPDATE stock SET quantity = "+final_availqty+" WHERE product_name = '"+med_name+"'");
+                    total=final_qty*prc;
+                    pay=pay+total;
+                    jTextField_total.setText(String.valueOf(final_qty*prc));
+                    flag_meds=1;
+                }
             }
             catch(Exception e)
             {
-                JOptionPane.showMessageDialog(null, "Not connected qty");
+                JOptionPane.showMessageDialog(null, e+"\nNot connected qty");
             }
             
-            total=final_qty*prc;
-            pay=pay+total;
-            jTextField_total.setText(String.valueOf(final_qty*prc));
-            flag_meds=1;
+            
         }
     }//GEN-LAST:event_jTextField_qtyKeyPressed
 
@@ -544,6 +551,10 @@ public class PlaceOrder extends javax.swing.JFrame {
             JasperPrint jprint=JasperFillManager.fillReport(jreport, a, con);
             JasperViewer.viewReport(jprint);
             
+            Statement st=con.createStatement();
+            st.executeUpdate("delete from invoice");
+            Statement st1=con.createStatement();
+            st1.executeUpdate("delete from sales");
         } 
         catch (Exception e) 
         {

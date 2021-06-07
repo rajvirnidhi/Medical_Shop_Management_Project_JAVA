@@ -3,7 +3,7 @@
 	<property name="ireport.zoom" value="1.6105100000000008"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
      invoice.`medicine` AS invoice_medicine,
      invoice.`price` AS invoice_price,
@@ -13,9 +13,13 @@
      invoice.`customer_name` AS invoice_customer_name,
      invoice.`contactno` AS invoice_contactno,
      invoice.`city` AS invoice_city,
-     invoice.`totalpayment` AS invoice_totalpayment
+     invoice.`totalpayment` AS invoice_totalpayment,
+     sales.`med_name` AS sales_med_name,
+     sales.`total` AS sales_total,
+     sales.`gst` AS sales_gst
 FROM
-     `invoice` invoice]]>
+     `invoice` invoice,
+     `sales` sales]]>
 	</queryString>
 	<field name="invoice_medicine" class="java.lang.String"/>
 	<field name="invoice_price" class="java.lang.Double"/>
@@ -26,30 +30,44 @@ FROM
 	<field name="invoice_contactno" class="java.lang.Integer"/>
 	<field name="invoice_city" class="java.lang.String"/>
 	<field name="invoice_totalpayment" class="java.lang.Double"/>
+	<field name="sales_med_name" class="java.lang.String"/>
+	<field name="sales_total" class="java.lang.Double"/>
+	<field name="sales_gst" class="java.lang.Double"/>
 	<variable name="invoice_total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{invoice_total}]]></variableExpression>
 	</variable>
 	<group name="sales">
 		<groupFooter>
-			<band height="50">
+			<band height="59">
 				<staticText>
 					<reportElement x="321" y="0" width="123" height="20" uuid="a1e50381-491c-4e98-b991-cfec7efd0374"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[Total payable amount]]></text>
+					<text><![CDATA[Total amount]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="454" y="0" width="100" height="20" uuid="f2952566-ebe3-4f7e-a68c-46147e7abaa2"/>
 					<textFieldExpression><![CDATA[$V{invoice_total_1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="219" y="30" width="123" height="20" uuid="7b0a6cde-7616-4b23-8865-07e291a14a11"/>
+					<reportElement x="208" y="39" width="123" height="20" uuid="7b0a6cde-7616-4b23-8865-07e291a14a11"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
 					<text><![CDATA[Thank you visit again]]></text>
 				</staticText>
+				<staticText>
+					<reportElement x="321" y="19" width="123" height="20" uuid="6dd7673e-0a82-446c-8d0e-624d67af9126"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total amount (18% GST)]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="454" y="19" width="100" height="20" uuid="bfe6ebbf-7a4f-4171-a5bd-d72365f0fac6"/>
+					<textFieldExpression><![CDATA[$F{sales_gst}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupFooter>
 	</group>
@@ -126,7 +144,7 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="26" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="100" height="20" uuid="7ae19b42-6405-46f0-8718-bcf432fadfa3"/>
 				<textFieldExpression><![CDATA[$F{invoice_medicine}]]></textFieldExpression>
