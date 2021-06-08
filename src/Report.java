@@ -1,3 +1,22 @@
+
+import Project.ConnectionProvider;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,8 +32,30 @@ public class Report extends javax.swing.JFrame {
     /**
      * Creates new form Report
      */
+    ArrayList<String> med_name = new ArrayList<String>();
+    ArrayList<Integer> availqty = new ArrayList<Integer>();
+    int size=0;
+    int qty[];
+    
     public Report() {
         initComponents();
+        Database();
+        
+        try
+        {
+            Connection con=ConnectionProvider.getCon();
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery("SELECT * FROM place_order;");
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            Statement st1=con.createStatement();
+            ResultSet rs1=st1.executeQuery("SELECT * FROM stock;");
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs1));
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Connection error");
+        }
     }
 
     /**
@@ -26,23 +67,300 @@ public class Report extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton_piechart = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton_close = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jButton_bargraph = new javax.swing.JButton();
+        jButton_piechart1 = new javax.swing.JButton();
+        jButton_bargraph1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(600, 250));
         setUndecorated(true);
+
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "medicine", "price", "quantity", "total", "batchno", "customer_name", "contactno", "city"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jButton_piechart.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_piechart.setText("Pie Chart");
+        jButton_piechart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_piechartActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("STOCK DATA");
+
+        jButton_close.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/Close.png"))); // NOI18N
+        jButton_close.setText("Close");
+        jButton_close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_closeActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setText("ORDERS DATA");
+
+        jButton_bargraph.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_bargraph.setText("Bar Graph");
+        jButton_bargraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_bargraphActionPerformed(evt);
+            }
+        });
+
+        jButton_piechart1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_piechart1.setText("Pie Chart");
+        jButton_piechart1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_piechart1ActionPerformed(evt);
+            }
+        });
+
+        jButton_bargraph1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_bargraph1.setText("Bar Graph");
+        jButton_bargraph1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_bargraph1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton_close)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(308, 308, 308))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(jButton_piechart)
+                        .addGap(134, 134, 134)
+                        .addComponent(jButton_bargraph))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(259, 259, 259)
+                        .addComponent(jButton_piechart1)
+                        .addGap(134, 134, 134)
+                        .addComponent(jButton_bargraph1)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(306, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addGap(282, 282, 282)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_piechart)
+                    .addComponent(jButton_bargraph))
+                .addGap(74, 74, 74)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_piechart1)
+                    .addComponent(jButton_bargraph1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jButton_close)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addComponent(jLabel2)
+                    .addContainerGap(483, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void Database()
+    {
+        try
+        {
+            String sql="select * from stock";
+            Connection con=ConnectionProvider.getCon();
+            PreparedStatement pst=con.prepareStatement(sql);
+            ResultSet rs=pst.executeQuery();
+            
+            while(rs.next())
+            {
+                String name=rs.getString("product_name");
+                med_name.add(name);
+                int qty=rs.getInt("quantity");
+                availqty.add(qty);
+            }
+            size=med_name.size();
+            String name[]=new String[size];
+            qty=new int[size];
+            
+            int sold_qty=0;
+            PreparedStatement pst1=con.prepareStatement("select * from place_order where medicine=?");
+            
+            for(int i=0;i<size;i++)
+            {
+                pst1.setString(1,med_name.get(i));
+                ResultSet rs1=pst1.executeQuery();
+                while(rs1.next())
+                {
+                    sold_qty+=rs1.getInt("quantity");
+                    System.out.println(rs1.getInt("quantity"));
+                }
+                qty[i]=sold_qty;
+                sold_qty=0;
+            }
+            
+            for(int i=0;i<size;i++)
+            {
+                System.out.println(med_name.get(i)+" "+qty[i]);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e+"\nNot connected!");
+        }
+    }
+    
+    
+    private void jButton_piechartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_piechartActionPerformed
+        // TODO add your handling code here:
+        try
+        {
+            DefaultPieDataset pieDataset = new DefaultPieDataset();
+            for(int i=0;i<size;i++)
+            {
+                pieDataset.setValue(med_name.get(i),qty[i]);
+            }
+            JFreeChart chart = ChartFactory.createPieChart("Pie Chart", pieDataset, true, true, true);
+            
+            PiePlot p=(PiePlot)chart.getPlot();
+            ChartFrame frame=new ChartFrame("Pie Chart",chart);
+            frame.setVisible(true);
+            frame.setSize(900,900);
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e+"\nNot connected!");
+        }
+    }//GEN-LAST:event_jButton_piechartActionPerformed
+
+    private void jButton_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_closeActionPerformed
+        // TODO add your handling code here:
+        //close the form
+        setVisible(false);
+    }//GEN-LAST:event_jButton_closeActionPerformed
+
+    private void jButton_bargraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bargraphActionPerformed
+        // TODO add your handling code here:
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        for(int i=0;i<size;i++)
+        {
+            dataset.setValue(qty[i],"Quantity",med_name.get(i));
+        }
+        JFreeChart chart=ChartFactory.createBarChart3D("Bar Chart", "Medicine name", "Sold Quantity", dataset, PlotOrientation.VERTICAL, false, true, false);
+        chart.setBackgroundPaint(Color.WHITE);
+        
+        CategoryPlot p=chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.BLACK);
+        ChartFrame frame = new ChartFrame("Bar Chart",chart);
+        frame.setVisible(true);
+        frame.setSize(900,800);
+    }//GEN-LAST:event_jButton_bargraphActionPerformed
+
+    private void jButton_piechart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_piechart1ActionPerformed
+        // TODO add your handling code here:
+        try
+        {
+            DefaultPieDataset pieDataset = new DefaultPieDataset();
+            for(int i=0;i<size;i++)
+            {
+                pieDataset.setValue(med_name.get(i),availqty.get(i));
+            }
+            JFreeChart chart = ChartFactory.createPieChart("Pie Chart", pieDataset, true, true, true);
+            
+            PiePlot p=(PiePlot)chart.getPlot();
+            ChartFrame frame=new ChartFrame("Pie Chart",chart);
+            frame.setVisible(true);
+            frame.setSize(900,900);
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e+"\nNot connected!");
+        }
+    }//GEN-LAST:event_jButton_piechart1ActionPerformed
+
+    private void jButton_bargraph1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bargraph1ActionPerformed
+        // TODO add your handling code here:
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        for(int i=0;i<size;i++)
+        {
+            dataset.setValue(availqty.get(i),"Available Quantity",med_name.get(i));
+        }
+        JFreeChart chart=ChartFactory.createBarChart3D("Bar Chart", "Medicine name", "Available Quantity", dataset, PlotOrientation.VERTICAL, false, true, false);
+        chart.setBackgroundPaint(Color.WHITE);
+        
+        CategoryPlot p=chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.BLACK);
+        ChartFrame frame = new ChartFrame("Bar Chart",chart);
+        frame.setVisible(true);
+        frame.setSize(900,800);
+    }//GEN-LAST:event_jButton_bargraph1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +398,16 @@ public class Report extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_bargraph;
+    private javax.swing.JButton jButton_bargraph1;
+    private javax.swing.JButton jButton_close;
+    private javax.swing.JButton jButton_piechart;
+    private javax.swing.JButton jButton_piechart1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

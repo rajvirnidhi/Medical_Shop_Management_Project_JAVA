@@ -27,6 +27,18 @@ public class viewStock extends javax.swing.JFrame {
     public viewStock() {
         initComponents();
         fillcombo();
+        
+        try
+        {
+            Connection con=ConnectionProvider.getCon();
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery("SELECT * FROM stock;");
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Connection error");
+        }
     }
 
     /**
@@ -61,6 +73,17 @@ public class viewStock extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
@@ -69,7 +92,7 @@ public class viewStock extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 826, 50));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 826, 220));
 
         jButton_close.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/Close.png"))); // NOI18N
@@ -137,7 +160,7 @@ public class viewStock extends javax.swing.JFrame {
         if(evt.getKeyCode()== KeyEvent.VK_ENTER)
         {
             name=(String) jComboBox_mname.getSelectedItem();
-            try
+        try
         {
             Connection con=ConnectionProvider.getCon();
             Statement st=con.createStatement();

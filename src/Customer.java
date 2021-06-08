@@ -181,14 +181,14 @@ public class Customer extends javax.swing.JFrame {
             int cno=Integer.parseInt(strcno);
             Connection con=ConnectionProvider.getCon();
             Statement st=con.createStatement();
-            st.executeUpdate("insert into customer values('"+cname+"','"+cno+"','"+add+"','"+city+"','"+cid+")");
+            st.executeUpdate("insert into customer values('"+cname+"','"+cno+"','"+add+"','"+city+"','"+cid+"')");
             JOptionPane.showMessageDialog(null,"Successfully Updated");
             setVisible(false);
             new Customer().setVisible(true);
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "please enter data in correct format");
+            JOptionPane.showMessageDialog(null, e+"\nplease enter data in correct format");
         }
     }//GEN-LAST:event_jButton_saveActionPerformed
 

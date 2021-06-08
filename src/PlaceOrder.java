@@ -1,6 +1,7 @@
 import Project.ConnectionProvider;
 import java.awt.event.KeyEvent;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -22,6 +23,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     public int final_qty,final_availqty,bno,contactno,cust_id,flag=0,flag_meds=0,flag_cust=0,flag_save=0;
     public double prc,total,pay=0,gst;
     public String cust_name,cust_add,cust_city,med_name;
+    DecimalFormat df=new DecimalFormat("#.##");
     
     public PlaceOrder() {
         initComponents();
@@ -327,8 +329,10 @@ public class PlaceOrder extends javax.swing.JFrame {
                     Statement st1=con.createStatement();
                     st1.executeUpdate("UPDATE stock SET quantity = "+final_availqty+" WHERE product_name = '"+med_name+"'");
                     total=final_qty*prc;
+                    total=Double.parseDouble(df.format(total));
                     pay=pay+total;
-                    jTextField_total.setText(String.valueOf(final_qty*prc));
+                    pay=Double.parseDouble(df.format(pay));
+                    jTextField_total.setText(String.valueOf(total));
                     flag_meds=1;
                 }
             }
@@ -366,6 +370,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                     jTextField_availqty.setText(String.valueOf(availqty));
 
                     prc=rs.getDouble("price");
+                    prc=Double.parseDouble(df.format(prc));
                     jTextField_prc.setText(String.valueOf(prc));
 
                     flag=1;
@@ -454,6 +459,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             gst= pay+((pay*18)/100);
+            gst=Double.parseDouble(df.format(gst));
             PreparedStatement pst=con.prepareStatement("insert into sales values(?,?,?)");
             pst.setString(1,med_name);
             pst.setDouble(2,pay);
