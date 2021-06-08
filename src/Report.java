@@ -78,10 +78,12 @@ public class Report extends javax.swing.JFrame {
         jButton_bargraph = new javax.swing.JButton();
         jButton_piechart1 = new javax.swing.JButton();
         jButton_bargraph1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(600, 250));
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -97,6 +99,8 @@ public class Report extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 75, 826, 95));
+
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -110,6 +114,8 @@ public class Report extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 344, 826, 95));
+
         jButton_piechart.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_piechart.setText("Pie Chart");
         jButton_piechart.addActionListener(new java.awt.event.ActionListener() {
@@ -117,9 +123,11 @@ public class Report extends javax.swing.JFrame {
                 jButton_piechartActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_piechart, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 188, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("STOCK DATA");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 287, -1, -1));
 
         jButton_close.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/Close.png"))); // NOI18N
@@ -129,9 +137,11 @@ public class Report extends javax.swing.JFrame {
                 jButton_closeActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(745, 508, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setText("ORDERS DATA");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 23, -1, -1));
 
         jButton_bargraph.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_bargraph.setText("Bar Graph");
@@ -140,6 +150,7 @@ public class Report extends javax.swing.JFrame {
                 jButton_bargraphActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_bargraph, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 188, -1, -1));
 
         jButton_piechart1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_piechart1.setText("Pie Chart");
@@ -148,6 +159,7 @@ public class Report extends javax.swing.JFrame {
                 jButton_piechart1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_piechart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 457, -1, -1));
 
         jButton_bargraph1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_bargraph1.setText("Bar Graph");
@@ -156,74 +168,10 @@ public class Report extends javax.swing.JFrame {
                 jButton_bargraph1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_bargraph1, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 457, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton_close)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(308, 308, 308))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(jButton_piechart)
-                        .addGap(134, 134, 134)
-                        .addComponent(jButton_bargraph))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(jButton_piechart1)
-                        .addGap(134, 134, 134)
-                        .addComponent(jButton_bargraph1)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(306, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(282, 282, 282)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_piechart)
-                    .addComponent(jButton_bargraph))
-                .addGap(74, 74, 74)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_piechart1)
-                    .addComponent(jButton_bargraph1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jButton_close)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(23, 23, 23)
-                    .addComponent(jLabel2)
-                    .addContainerGap(483, Short.MAX_VALUE)))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/bkg850.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -285,7 +233,7 @@ public class Report extends javax.swing.JFrame {
             {
                 pieDataset.setValue(med_name.get(i),qty[i]);
             }
-            JFreeChart chart = ChartFactory.createPieChart("Pie Chart", pieDataset, true, true, true);
+            JFreeChart chart = ChartFactory.createPieChart("Pie Chart for products sold", pieDataset, true, true, true);
             
             PiePlot p=(PiePlot)chart.getPlot();
             ChartFrame frame=new ChartFrame("Pie Chart",chart);
@@ -312,7 +260,7 @@ public class Report extends javax.swing.JFrame {
         {
             dataset.setValue(qty[i],"Quantity",med_name.get(i));
         }
-        JFreeChart chart=ChartFactory.createBarChart3D("Bar Chart", "Medicine name", "Sold Quantity", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart chart=ChartFactory.createBarChart3D("Bar Chart for products sold", "Medicine name", "Sold Quantity", dataset, PlotOrientation.VERTICAL, false, true, false);
         chart.setBackgroundPaint(Color.WHITE);
         
         CategoryPlot p=chart.getCategoryPlot();
@@ -331,7 +279,7 @@ public class Report extends javax.swing.JFrame {
             {
                 pieDataset.setValue(med_name.get(i),availqty.get(i));
             }
-            JFreeChart chart = ChartFactory.createPieChart("Pie Chart", pieDataset, true, true, true);
+            JFreeChart chart = ChartFactory.createPieChart("Pie Chart for available stock", pieDataset, true, true, true);
             
             PiePlot p=(PiePlot)chart.getPlot();
             ChartFrame frame=new ChartFrame("Pie Chart",chart);
@@ -352,7 +300,7 @@ public class Report extends javax.swing.JFrame {
         {
             dataset.setValue(availqty.get(i),"Available Quantity",med_name.get(i));
         }
-        JFreeChart chart=ChartFactory.createBarChart3D("Bar Chart", "Medicine name", "Available Quantity", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart chart=ChartFactory.createBarChart3D("Bar Chart for available stock", "Medicine name", "Available Quantity", dataset, PlotOrientation.VERTICAL, false, true, false);
         chart.setBackgroundPaint(Color.WHITE);
         
         CategoryPlot p=chart.getCategoryPlot();
@@ -405,6 +353,7 @@ public class Report extends javax.swing.JFrame {
     private javax.swing.JButton jButton_piechart1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

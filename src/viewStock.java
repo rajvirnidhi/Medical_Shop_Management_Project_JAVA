@@ -5,8 +5,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -56,7 +64,8 @@ public class viewStock extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton_close = new javax.swing.JButton();
         jComboBox_mname = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(600, 250));
@@ -92,7 +101,7 @@ public class viewStock extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 826, 220));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 826, 230));
 
         jButton_close.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/Close.png"))); // NOI18N
@@ -117,8 +126,17 @@ public class viewStock extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox_mname, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 200, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/bkg850.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Print stock list");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGES/bkg850.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,6 +192,23 @@ public class viewStock extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox_mnameKeyPressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try
+        {
+            HashMap a= new HashMap();
+            JasperDesign jdesign =JRXmlLoader.load("C:\\Users\\Nidhi Rajvir\\OneDrive\\Documents\\NetBeansProjects\\Medical Shop Management System\\src\\stockList.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+            Connection con=ConnectionProvider.getCon();
+            JasperPrint jprint=JasperFillManager.fillReport(jreport, a, con);
+            JasperViewer.viewReport(jprint);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Not connected!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -210,11 +245,12 @@ public class viewStock extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_close;
     private javax.swing.JComboBox<String> jComboBox_mname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

@@ -46,10 +46,6 @@ FROM
 					</textElement>
 					<text><![CDATA[Total amount]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="454" y="0" width="100" height="20" uuid="f2952566-ebe3-4f7e-a68c-46147e7abaa2"/>
-					<textFieldExpression><![CDATA[$V{invoice_total_1}]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement x="208" y="39" width="123" height="20" uuid="7b0a6cde-7616-4b23-8865-07e291a14a11"/>
 					<textElement>
@@ -67,6 +63,10 @@ FROM
 				<textField>
 					<reportElement x="454" y="19" width="100" height="20" uuid="bfe6ebbf-7a4f-4171-a5bd-d72365f0fac6"/>
 					<textFieldExpression><![CDATA[$F{sales_gst}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="454" y="0" width="100" height="20" uuid="c5894082-78a4-47ad-8e80-ea47255e601d"/>
+					<textFieldExpression><![CDATA[$F{sales_total}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -170,7 +170,7 @@ FROM
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="28" splitType="Stretch"/>
+		<band height="18" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">

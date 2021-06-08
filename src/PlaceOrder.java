@@ -326,6 +326,11 @@ public class PlaceOrder extends javax.swing.JFrame {
                 if(final_availqty > 0 && final_availqty >= final_qty)
                 {
                     final_availqty-=final_qty;
+                    /*if(final_availqty==0)
+                    {
+                        Statement st1=con.createStatement();
+                        st1.executeUpdate("DELETE FROM stock WHERE product_name = '"+med_name+"'");
+                    }*/
                     Statement st1=con.createStatement();
                     st1.executeUpdate("UPDATE stock SET quantity = "+final_availqty+" WHERE product_name = '"+med_name+"'");
                     total=final_qty*prc;
@@ -478,7 +483,8 @@ public class PlaceOrder extends javax.swing.JFrame {
             Statement st1=con.createStatement();
             st1.executeUpdate("delete from sales");
             
-            new PlaceOrder().setVisible(true);
+            setVisible(false);
+            //new PlaceOrder().setVisible(true);
         } 
         catch (Exception e) 
         {
