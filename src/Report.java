@@ -5,12 +5,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.PieSectionLabelGenerator;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -236,6 +239,8 @@ public class Report extends javax.swing.JFrame {
             JFreeChart chart = ChartFactory.createPieChart("Pie Chart for products sold", pieDataset, true, true, true);
             
             PiePlot p=(PiePlot)chart.getPlot();
+            PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator("{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
+            p.setLabelGenerator(gen);
             ChartFrame frame=new ChartFrame("Pie Chart",chart);
             frame.setVisible(true);
             frame.setSize(900,900);
@@ -282,6 +287,8 @@ public class Report extends javax.swing.JFrame {
             JFreeChart chart = ChartFactory.createPieChart("Pie Chart for available stock", pieDataset, true, true, true);
             
             PiePlot p=(PiePlot)chart.getPlot();
+            PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator("{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
+            p.setLabelGenerator(gen);
             ChartFrame frame=new ChartFrame("Pie Chart",chart);
             frame.setVisible(true);
             frame.setSize(900,900);

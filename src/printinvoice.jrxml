@@ -76,8 +76,11 @@ FROM
 	</background>
 	<title>
 		<band height="68" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="67" backcolor="#006699" uuid="99e547ba-6ab4-43d8-b5cf-ea83d381567f"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="198" y="10" width="175" height="57" uuid="66ac02a0-b9bc-4c68-af35-09208ca46e56"/>
+				<reportElement x="198" y="10" width="175" height="57" forecolor="#FFFFFF" uuid="66ac02a0-b9bc-4c68-af35-09208ca46e56"/>
 				<textElement>
 					<font size="36" isBold="true"/>
 				</textElement>
@@ -113,29 +116,32 @@ FROM
 	</pageHeader>
 	<columnHeader>
 		<band height="29" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="28" backcolor="#E6E6E6" uuid="91931d1b-b6f5-4443-a746-a3e20db7c2e6"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="0" y="0" width="167" height="28" uuid="b7103275-0a03-4e7a-bfe9-8e615cda9364"/>
+				<reportElement x="15" y="0" width="167" height="28" forecolor="#006699" backcolor="#CCCCCC" uuid="b7103275-0a03-4e7a-bfe9-8e615cda9364"/>
 				<textElement>
 					<font size="16"/>
 				</textElement>
 				<text><![CDATA[Medicine name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="231" y="0" width="43" height="28" uuid="2bc0c28c-5544-4a73-b41b-54d35e532f08"/>
+				<reportElement x="231" y="0" width="43" height="28" forecolor="#006699" backcolor="#CCCCCC" uuid="2bc0c28c-5544-4a73-b41b-54d35e532f08"/>
 				<textElement>
 					<font size="16"/>
 				</textElement>
 				<text><![CDATA[Price]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="354" y="0" width="61" height="28" uuid="34e06322-d61e-48c0-867d-c262195a4164"/>
+				<reportElement x="354" y="0" width="61" height="28" forecolor="#006699" backcolor="#CCCCCC" uuid="34e06322-d61e-48c0-867d-c262195a4164"/>
 				<textElement>
 					<font size="16"/>
 				</textElement>
 				<text><![CDATA[Quantity]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="454" y="1" width="61" height="28" uuid="3a83c54f-dbf7-40f6-bcbb-cb8cca53c5f6"/>
+				<reportElement mode="Transparent" x="454" y="1" width="61" height="28" forecolor="#006699" backcolor="#CCCCCC" uuid="3a83c54f-dbf7-40f6-bcbb-cb8cca53c5f6"/>
 				<textElement>
 					<font size="16"/>
 				</textElement>
@@ -144,11 +150,7 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="23" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="7ae19b42-6405-46f0-8718-bcf432fadfa3"/>
-				<textFieldExpression><![CDATA[$F{invoice_medicine}]]></textFieldExpression>
-			</textField>
+		<band height="34" splitType="Stretch">
 			<textField>
 				<reportElement x="231" y="0" width="100" height="20" uuid="52eb3909-b66c-4272-89de-20c5a87dbe8d"/>
 				<textFieldExpression><![CDATA[$F{invoice_price}]]></textFieldExpression>
@@ -167,6 +169,10 @@ FROM
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="15" y="0" width="100" height="20" uuid="7ae19b42-6405-46f0-8718-bcf432fadfa3"/>
+				<textFieldExpression><![CDATA[$F{invoice_medicine}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -174,20 +180,23 @@ FROM
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="0" width="553" height="54" backcolor="#E6E6E6" uuid="7123d7bf-cdd6-4265-a6a3-770dcba89587"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="257" y="0" width="298" height="20" uuid="7d3d8886-2772-43cf-bd1b-6a0dd8062d44"/>
+				<reportElement x="257" y="0" width="298" height="20" forecolor="#006699" uuid="7d3d8886-2772-43cf-bd1b-6a0dd8062d44"/>
 				<text><![CDATA[5 Panchnath Plot ,Dr Ambedkar road, Rajkot 360001]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="257" y="20" width="298" height="20" uuid="ecd33382-8641-4625-8135-dc6436b79b5b"/>
+				<reportElement x="257" y="20" width="298" height="20" forecolor="#006699" uuid="ecd33382-8641-4625-8135-dc6436b79b5b"/>
 				<text><![CDATA[Timings : 9:00 am to 8:00pm Mon to Sat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="bd58ca2c-a1f4-4209-90d4-cadea7ed6413"/>
+				<reportElement x="0" y="0" width="100" height="20" forecolor="#006699" uuid="bd58ca2c-a1f4-4209-90d4-cadea7ed6413"/>
 				<text><![CDATA[My Pharmacy]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="20" width="182" height="20" uuid="34173a52-b349-4454-8422-cd580031c2b6"/>
+				<reportElement x="0" y="20" width="182" height="20" forecolor="#006699" uuid="34173a52-b349-4454-8422-cd580031c2b6"/>
 				<text><![CDATA[Contact No: 999999999 ,777777777]]></text>
 			</staticText>
 		</band>

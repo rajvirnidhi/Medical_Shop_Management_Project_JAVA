@@ -259,7 +259,7 @@ public class PlaceOrder extends javax.swing.JFrame {
             contactno=cno;
             Connection con=ConnectionProvider.getCon();
             Statement st1=con.createStatement();
-            st1.executeUpdate("insert into customer values('"+cname+"','"+cno+"','"+add+"','"+city+"')");
+            st1.executeUpdate("insert into customer values('"+cname+"','"+cno+"','"+add+"','"+city+"','"+cid+"')");
             JOptionPane.showMessageDialog(null,"Successfully Updated");
             flag_cust=2;
             jTextField_cid.setEditable(false);
@@ -476,7 +476,10 @@ public class PlaceOrder extends javax.swing.JFrame {
             JasperReport jreport = JasperCompileManager.compileReport(jdesign);
             
             JasperPrint jprint=JasperFillManager.fillReport(jreport, a, con);
-            JasperViewer.viewReport(jprint);
+            //JasperViewer.viewReport(jprint);
+            
+            JasperViewer jv = new JasperViewer( jprint, false );
+            jv.viewReport( jprint, false );
             
             Statement st=con.createStatement();
             st.executeUpdate("delete from invoice");
@@ -484,12 +487,13 @@ public class PlaceOrder extends javax.swing.JFrame {
             st1.executeUpdate("delete from sales");
             
             setVisible(false);
-            //new PlaceOrder().setVisible(true);
+            new PlaceOrder().setVisible(true);
         } 
         catch (Exception e) 
         {
             JOptionPane.showMessageDialog(null, "Not connected!");
         }
+        
     }//GEN-LAST:event_jButton_printInvoiceActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

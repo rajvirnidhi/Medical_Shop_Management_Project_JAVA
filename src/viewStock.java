@@ -201,7 +201,8 @@ public class viewStock extends javax.swing.JFrame {
             JasperReport jreport = JasperCompileManager.compileReport(jdesign);
             Connection con=ConnectionProvider.getCon();
             JasperPrint jprint=JasperFillManager.fillReport(jreport, a, con);
-            JasperViewer.viewReport(jprint);
+            JasperViewer jv = new JasperViewer( jprint, false );
+            jv.viewReport( jprint, false );
         }
         catch(Exception e)
         {
